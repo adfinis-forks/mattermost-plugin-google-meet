@@ -41,7 +41,10 @@ export class PostTypeGoogleMeet extends React.PureComponent<PostTypeGoogleMeetPr
                         >
                             <FormattedMessage id='mattermost_meet_plugin.message.title'/>
                         </h5>
-                        <FormattedMessage id='mattermost_meet_plugin.message.subtitle'/>{ `: ${props.call_name}` }
+                        <FormattedMessage id='mattermost_meet_plugin.message.subtitle'/>{': '}
+                        <a href={props.meeting_link} target='_blank' rel='noopener noreferrer'>
+                            {props.meeting_topic || props.default_meeting_topic}
+                        </a>
                         <div>
                             <div style={style.body}>
                                 <Link

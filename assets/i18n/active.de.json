@@ -1,0 +1,34 @@
+{
+  "gmeet.command.help.text": {
+    "hash": "sha1-c69cda51a8898573a2a175f5e120ff3e8417eafc",
+    "other": "* |/gmeet| - Create a new meeting\n* |/gmeet start [topic]| - Create a new meeting with specified topic\n* |/gmeet help| - Show this help text\n* |/gmeet settings see| - View your current user settings for the Google Meet plugin\n* |/gmeet settings [setting] [value]| - Update your user settings (see below for options)\n\n###### Google Meet Settings:\n* |/gmeet settings naming_scheme [words/uuid/mattermost/ask]|: Select how meeting names are generated with one of these options:\n    * |words|: Random English words in title case\n    * |uuid|: UUID (universally unique identifier)\n    * |mattermost|: Mattermost specific names. Combination of team name, channel name and random text in public and private channels; personal meeting name in direct and group messages channels.\n    * |ask|: The plugin asks you to select the name every time you start a meeting"
+  },
+  "gmeet.command.help.title": {
+    "hash": "sha1-5b114ae9d2dd0279d3a2681399951762ffd5f710",
+    "other": "###### Mattermost Google Meet Plugin - Hilfe zu den Slash-Befehlen\n"
+  },
+  "gmeet.command.settings.current_values": {
+    "hash": "sha1-3782a2bbd659508981d998a3dcbf9285252909a0",
+    "other": "###### Google Meet Settings:\n* Naming Scheme: |{{.NamingScheme}}|"
+  },
+  "gmeet.command.settings.invalid_parameters": {
+    "hash": "sha1-f72c018607477396d845c7a3e11be73490b79a56",
+    "other": "Ungültiger Einstellung"
+  },
+  "gmeet.command.settings.unable_to_get": {
+    "hash": "sha1-7e8adf669715dc73bf3f13568593cc30539af7ec",
+    "other": "Abrufen der Benutzereinstellungen fehlgeschlagen"
+  },
+  "gmeet.command.settings.unable_to_set": {
+    "hash": "sha1-3bab2d5cd97e52eb365ab5e25aa5c89bf2a78f31",
+    "other": "Speichern der Benutzereinstellungen fehlgeschlagen"
+  },
+  "gmeet.command.settings.wrong_field": {
+    "hash": "sha1-6f4aaf985d612ea9207b99a3a119180052ca0484",
+    "other": "Ungültige Benutzereinstellung, muss `naming_scheme` sein."
+  },
+  "gmeet.command.settings.wrong_naming_scheme_value": {
+    "hash": "sha1-fb39ca34d10fa7b9ccea30f0ebf7e1f7936b6b32",
+    "other": "Ungültiger `naming_scheme` Wert, muss `ask`, `words`, `uuid` oder `mattermost` sein."
+  }
+}

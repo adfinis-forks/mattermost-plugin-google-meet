@@ -1,0 +1,23 @@
+{
+  "gmeet.ask.channel_meeting": "Channel meeting",
+  "gmeet.ask.meeting_name_random_words": "Meeting name with random words",
+  "gmeet.ask.personal_meeting": "Personal meeting",
+  "gmeet.ask.select_meeting_type": "Select type of meeting you want to start",
+  "gmeet.ask.title": "Google Meeting Start",
+  "gmeet.ask.uuid_meeting": "Meeting name with UUID",
+  "gmeet.command.help.text": "* |/gmeet| - Create a new meeting\n* |/gmeet start [topic]| - Create a new meeting with specified topic\n* |/gmeet help| - Show this help text\n* |/gmeet settings see| - View your current user settings for the Google Meet plugin\n* |/gmeet settings [setting] [value]| - Update your user settings (see below for options)\n\n###### Google Meet Settings:\n* |/gmeet settings naming_scheme [words/uuid/mattermost/ask]|: Select how meeting names are generated with one of these options:\n    * |words|: Random English words in title case\n    * |uuid|: UUID (universally unique identifier)\n    * |mattermost|: Mattermost specific names. Combination of team name, channel name and random text in public and private channels; personal meeting name in direct and group messages channels.\n    * |ask|: The plugin asks you to select the name every time you start a meeting",
+  "gmeet.command.help.title": "###### Mattermost Google Meet Plugin - Slash Command help\n",
+  "gmeet.command.settings.current_values": "###### Google Meet Settings:\n* Naming Scheme: |{{.NamingScheme}}|",
+  "gmeet.command.settings.invalid_parameters": "Invalid settings parameters",
+  "gmeet.command.settings.unable_to_get": "Unable to get user settings",
+  "gmeet.command.settings.unable_to_set": "Unable to set user settings",
+  "gmeet.command.settings.wrong_field": "Invalid config field, use `naming_scheme`.",
+  "gmeet.command.settings.wrong_naming_scheme_value": "Invalid `naming_scheme` value, use `ask`, `words`, `uuid` or `mattermost`.",
+  "gmeet.start_meeting.channel_meeting_topic": "{{.ChannelName}} Channel Meeting",
+  "gmeet.start_meeting.default_meeting_topic": "Google Meeting",
+  "gmeet.start_meeting.fallback_text": "Video Meeting started at [{{.MeetingID}}]({{.MeetingURL}}).\n\n[Join Meeting]({{.MeetingURL}})",
+  "gmeet.start_meeting.meeting_id": "Meeting ID",
+  "gmeet.start_meeting.personal_meeting_id": "Personal Meeting ID (PMI)",
+  "gmeet.start_meeting.personal_meeting_topic": "{{.Name}}'s Personal Meeting",
+  "gmeet.start_meeting.slack_attachment_text": "{{.MeetingType}}: [{{.MeetingID}}]({{.MeetingURL}})\n\n[Join Meeting]({{.MeetingURL}})"
+}

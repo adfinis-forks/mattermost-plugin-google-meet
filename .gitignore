@@ -8,3 +8,5 @@ dist/
 
 # Jetbrains
 .idea/
+
+assets/i18n/translate.*.json

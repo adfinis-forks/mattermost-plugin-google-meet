@@ -34,8 +34,8 @@ export class MattermostGoogleMeetPlugin implements Plugin {
             GOOGLE_MEET_MESSAGE,
             (props) => (<I18nProvider currentLocale={locale}>
                 <PostTypeGoogleMeet
-                    theme={props.theme}
                     post={props.post}
+                    theme={props.theme}
                 />
             </I18nProvider>),
         );
