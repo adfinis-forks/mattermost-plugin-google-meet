@@ -1,13 +1,16 @@
-import { Dispatch } from 'react';
-import {Action} from 'redux';
-import {GlobalState} from 'mattermost-redux/types/store';
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
 
-import { Channel } from 'mattermost-redux/types/channels';
-import { GOOGLE_MEET_MESSAGE } from 'plugin/constant';
-import { uuidv4 } from 'util/utils';
-import {getCurrentUserId} from 'mattermost-redux/selectors/entities/common';
+import type {Dispatch} from 'react';
+import type {Action} from 'redux';
+
 import {createPost} from 'mattermost-redux/actions/posts';
-import { Post } from 'mattermost-redux/types/posts';
+import {getCurrentUserId} from 'mattermost-redux/selectors/entities/common';
+import type {Channel} from 'mattermost-redux/types/channels';
+import type {Post} from 'mattermost-redux/types/posts';
+import type {GlobalState} from 'mattermost-redux/types/store';
+
+import {GOOGLE_MEET_MESSAGE} from '@/plugin/constant';
 
 export const startCall = (channel: Channel) => {
     return async (dispatch: Dispatch<Action<Record<string, unknown>>>, getState: () => GlobalState) => {
@@ -29,11 +32,11 @@ export const startCall = (channel: Channel) => {
             type: GOOGLE_MEET_MESSAGE as any,
             props: {
                 call_name: trimmedCallName,
-                meeting_link: url
+                meeting_link: url,
             },
         } as any;
 
         // Based on https://zenn.dev/kaakaa/articles/qiita-20201220-fd10c58b00c43ae3cc3c
-        return await dispatch(createPost(post as any) as any);
-    }
-}
+        return dispatch(createPost(post as any) as any);
+    };
+};

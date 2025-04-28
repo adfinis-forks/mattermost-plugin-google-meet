@@ -1,0 +1,6 @@
+services:
+  mattermost:
+    image: mattermost/mattermost-preview
+    restart: never
+    ports:
+      - 8065:8065
