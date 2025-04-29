@@ -21,7 +21,7 @@ const gmeetNameSchemeWords = "words"
 const gmeetNameSchemeUUID = "uuid"
 const gmeetNameSchemeMattermost = "mattermost"
 
-const configChangeEvent = "config_update"
+const configChangeEvent = "custom_gmeet_config_update"
 
 const gmeetURL = "https://g.co/meet"
 

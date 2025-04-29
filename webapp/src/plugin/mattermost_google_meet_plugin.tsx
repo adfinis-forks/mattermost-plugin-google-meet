@@ -43,7 +43,7 @@ export class MattermostGoogleMeetPlugin implements Plugin {
                 />
             </I18nProvider>),
         );
-        registry.registerWebSocketEventHandler('custom_jitsi_config_update', () => store.dispatch(loadConfig() as any));
+        registry.registerWebSocketEventHandler('custom_gmeet_config_update', () => store.dispatch(loadConfig() as any));
         store.dispatch(loadConfig() as any);
     }
 
