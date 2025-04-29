@@ -1,7 +1,31 @@
 {
+  "gmeet.ask.channel_meeting": {
+    "hash": "sha1-c38fb5c89ece9869aa4b9b6d1d041ab64df1eb8f",
+    "other": "Channel meeting"
+  },
+  "gmeet.ask.meeting_name_random_words": {
+    "hash": "sha1-ee8f64a8a20eb04fefde418d9dc55d409664a2fb",
+    "other": "Meeting name with random words"
+  },
+  "gmeet.ask.personal_meeting": {
+    "hash": "sha1-9aa3e0500b4b0af16961174dcf792e9e11c5b220",
+    "other": "Personal meeting"
+  },
+  "gmeet.ask.select_meeting_type": {
+    "hash": "sha1-e3bb1fbe427d3433e652b343086fa94926b8760b",
+    "other": "Select type of meeting you want to start"
+  },
+  "gmeet.ask.title": {
+    "hash": "sha1-2b67d9465ffa38aba17cdada973e8cd923959c34",
+    "other": "Google Meeting Start"
+  },
+  "gmeet.ask.uuid_meeting": {
+    "hash": "sha1-573ba198f97f8c38ee986a2cad4068d0e54c9dbd",
+    "other": "Meeting name with UUID"
+  },
   "gmeet.command.help.text": {
-    "hash": "sha1-c69cda51a8898573a2a175f5e120ff3e8417eafc",
-    "other": "* |/gmeet| - Create a new meeting\n* |/gmeet start [topic]| - Create a new meeting with specified topic\n* |/gmeet help| - Show this help text\n* |/gmeet settings see| - View your current user settings for the Google Meet plugin\n* |/gmeet settings [setting] [value]| - Update your user settings (see below for options)\n\n###### Google Meet Settings:\n* |/gmeet settings naming_scheme [words/uuid/mattermost/ask]|: Select how meeting names are generated with one of these options:\n    * |words|: Random English words in title case\n    * |uuid|: UUID (universally unique identifier)\n    * |mattermost|: Mattermost specific names. Combination of team name, channel name and random text in public and private channels; personal meeting name in direct and group messages channels.\n    * |ask|: The plugin asks you to select the name every time you start a meeting"
+    "hash": "sha1-218ef7e6ab1ef6f0e6fad54cfa3012837255f780",
+    "other": "* |/gmeet| - Create a new meeting\n* |/gmeet start [topic]| - Create a new meeting with specified topic\n* |/gmeet help| - Show this help text\n* |/gmeet settings see| - View your current user settings for the Google Meet plugin\n* |/gmeet settings [setting] [value]| - Update your user settings (see below for options)\n\n###### Google Meet Settings:\n* |/gmeet settings naming_scheme [words/uuid/mattermost/ask]|: Select how meeting names are generated with one of these options:\n    * |words|: Random English words\n    * |uuid|: UUID (universally unique identifier)\n    * |mattermost|: Mattermost specific names. Combination of team name, channel name and random text in public and private channels; personal meeting name in direct and group messages channels.\n    * |ask|: The plugin asks you to select the name every time you start a meeting"
   },
   "gmeet.command.help.title": {
     "hash": "sha1-5b114ae9d2dd0279d3a2681399951762ffd5f710",
@@ -30,5 +54,33 @@
   "gmeet.command.settings.wrong_naming_scheme_value": {
     "hash": "sha1-fb39ca34d10fa7b9ccea30f0ebf7e1f7936b6b32",
     "other": "Ungültiger `naming_scheme` Wert, muss `ask`, `words`, `uuid` oder `mattermost` sein."
+  },
+  "gmeet.start_meeting.channel_meeting_topic": {
+    "hash": "sha1-87eea3707ed3cad060b73cb43c0d4efe4ec8cc84",
+    "other": "{{.ChannelName}} Channel Meeting"
+  },
+  "gmeet.start_meeting.default_meeting_topic": {
+    "hash": "sha1-63a9881c511d3bd73465122a9eedb33eed04260e",
+    "other": "Google Meeting"
+  },
+  "gmeet.start_meeting.fallback_text": {
+    "hash": "sha1-e956f3c3fd1a6c3995976154e0f45099234a1f0a",
+    "other": "Video Meeting started at [{{.MeetingID}}]({{.MeetingURL}}).\n\n[Join Meeting]({{.MeetingURL}})"
+  },
+  "gmeet.start_meeting.meeting_id": {
+    "hash": "sha1-8a1315eaeb59e44132aa5c27e4f53e7ba92359f7",
+    "other": "Meeting ID"
+  },
+  "gmeet.start_meeting.personal_meeting_id": {
+    "hash": "sha1-ba2b43d1c43e28926cc42c26651693567363dd77",
+    "other": "Personal Meeting ID (PMI)"
+  },
+  "gmeet.start_meeting.personal_meeting_topic": {
+    "hash": "sha1-22fab211c66c011f0e1f2ca6303443da6e20793e",
+    "other": "{{.Name}}'s Personal Meeting"
+  },
+  "gmeet.start_meeting.slack_attachment_text": {
+    "hash": "sha1-7726587ccfee9bb7539aad458c154f8be3d95dcd",
+    "other": "{{.MeetingType}}: [{{.MeetingID}}]({{.MeetingURL}})\n\n[Join Meeting]({{.MeetingURL}})"
   }
 }

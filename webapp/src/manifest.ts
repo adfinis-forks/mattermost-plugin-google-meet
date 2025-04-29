@@ -35,7 +35,7 @@ const manifest = JSON.parse(`
                 "default": "words",
                 "options": [
                     {
-                        "display_name": "Random English words in title case",
+                        "display_name": "Random English words",
                         "value": "words"
                     },
                     {

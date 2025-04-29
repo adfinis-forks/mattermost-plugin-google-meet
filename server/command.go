@@ -65,7 +65,7 @@ func getAutocompleteData() *model.AutocompleteData {
 
 	namingScheme := model.NewAutocompleteData(commandArgNamingScheme, "[value]", "Select how meeting names are generated")
 	items := []model.AutocompleteListItem{{
-		HelpText: "Random English words in title case",
+		HelpText: "Random English words",
 		Item:     "words",
 	}, {
 		HelpText: "UUID (universally unique identifier)",
@@ -166,7 +166,7 @@ func (p *Plugin) executeHelpCommand(_ *plugin.Context, args *model.CommandArgs) 
 
 ###### Google Meet Settings:
 * |/gmeet settings naming_scheme [words/uuid/mattermost/ask]|: Select how meeting names are generated with one of these options:
-    * |words|: Random English words in title case
+    * |words|: Random English words
     * |uuid|: UUID (universally unique identifier)
     * |mattermost|: Mattermost specific names. Combination of team name, channel name and random text in public and private channels; personal meeting name in direct and group messages channels.
     * |ask|: The plugin asks you to select the name every time you start a meeting`,
