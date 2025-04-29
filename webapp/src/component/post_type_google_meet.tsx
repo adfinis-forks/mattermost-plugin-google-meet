@@ -1,3 +1,4 @@
+/* eslint-disable @mattermost/use-external-link */
 import type {FC} from 'react';
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
@@ -39,7 +40,11 @@ export class PostTypeGoogleMeet extends React.PureComponent<PostTypeGoogleMeetPr
                             <FormattedMessage id='mattermost_meet_plugin.message.title'/>
                         </h5>
                         <FormattedMessage id='mattermost_meet_plugin.message.subtitle'/>{': '}
-                        <a href={props.meeting_link} target='_blank' rel='noopener noreferrer'>
+                        <a
+                            href={props.meeting_link}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
                             {props.meeting_topic || props.default_meeting_topic}
                         </a>
                         <div>
