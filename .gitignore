@@ -10,3 +10,5 @@ dist/
 .idea/
 
 assets/i18n/translate.*.json
+
+bin/

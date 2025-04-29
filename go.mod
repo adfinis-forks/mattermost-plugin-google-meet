@@ -1,4 +1,4 @@
-module github.com/adfinis-forks/mattermost-google-meet-plugin
+module github.com/adfinis/mattermost-plugin-google-meet
 
 go 1.23.0
 

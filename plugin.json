@@ -1,10 +1,10 @@
 {
-  "id": "gmeet",
+  "id": "com.adfinis.gmeet",
   "version": "0.3.0",
-  "name": "Google Meet Plugin",
+  "name": "Google Meet",
   "description": "Start Google Meeting",
-  "homepage_url": "https://github.com/adfinis-forks/mattermost-google-meet-plugin",
-  "support_url": "https://github.com/adfinis-forks/mattermost-google-meet-plugins",
+  "homepage_url": "https://github.com/adfinis/mattermost-plugin-google-meet",
+  "support_url": "https://github.com/adfinis/mattermost-plugin-google-meet/issues",
   "min_server_version": "6.2.1",
   "icon_path": "assets/starter-template-icon.svg",
   "webapp": {

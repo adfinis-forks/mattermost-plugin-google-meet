@@ -229,7 +229,7 @@ func encodeGmeetMeetingID(meeting string) string {
 
 func (p *Plugin) askMeetingType(user *model.User, channel *model.Channel, rootID string) error {
 	l := p.b.GetUserLocalizer(user.Id)
-	apiURL := *p.API.GetConfig().ServiceSettings.SiteURL + "/plugins/gmeet/api/v1/meetings"
+	apiURL := *p.API.GetConfig().ServiceSettings.SiteURL + "/plugins/com.adfinis.gmeet/api/v1/meetings"
 
 	actions := []*model.PostAction{}
 

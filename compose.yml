@@ -1,3 +1,4 @@
+---
 services:
   mattermost:
     image: mattermost/mattermost-preview
