@@ -1,6 +1,7 @@
 version: "2"
 run:
   tests: false
+  
 linters:
   enable:
     - bodyclose
@@ -27,12 +28,21 @@ linters:
     - whitespace
     - wrapcheck
   exclusions:
+    paths:
+      - build/
     generated: lax
     presets:
       - common-false-positives
+  settings:
+    revive:
+      rules:
+        - name: package-comments
+          disabled: true
+
 issues:
   max-issues-per-linter: 0
   max-same-issues: 0
+
 formatters:
   enable:
     - gofumpt

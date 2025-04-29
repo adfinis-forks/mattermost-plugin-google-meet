@@ -11,6 +11,7 @@ import (
 	"github.com/mattermost/mattermost/server/public/shared/mlog"
 )
 
+// StartMeetingRequest is the request body for starting a meeting.
 type StartMeetingRequest struct {
 	ChannelID string `json:"channel_id"`
 	Topic     string `json:"topic"`
@@ -18,6 +19,7 @@ type StartMeetingRequest struct {
 	MeetingID int    `json:"meeting_id"`
 }
 
+// StartMeetingFromAction is the request body for starting a meeting from an action.
 type StartMeetingFromAction struct {
 	model.PostActionIntegrationRequest
 	Context struct {
@@ -28,6 +30,7 @@ type StartMeetingFromAction struct {
 	} `json:"context"`
 }
 
+// ServeHTTP handles HTTP requests for the plugin.
 func (p *Plugin) ServeHTTP(_ *plugin.Context, w http.ResponseWriter, r *http.Request) {
 	switch path := r.URL.Path; path {
 	case "/api/v1/meetings":
@@ -130,13 +133,7 @@ func (p *Plugin) handleStartMeeting(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if userConfig.NamingScheme == gmeetNameSchemeAsk && action.PostId == "" {
-		err = p.askMeetingType(user, channel, "")
-		if err != nil {
-			mlog.Error("Error asking the user for meeting name type", mlog.Err(err))
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
+		p.askMeetingType(user, channel, "")
 		_, err = w.Write([]byte("OK"))
 		if err != nil {
 			mlog.Warn("Unable to write response body", mlog.String("handler", "handleStartMeeting"), mlog.Err(err))

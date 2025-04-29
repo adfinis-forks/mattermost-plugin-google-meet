@@ -16,19 +16,23 @@ import (
 	"github.com/pkg/errors"
 )
 
-const gmeetNameSchemeAsk = "ask"
-const gmeetNameSchemeWords = "words"
-const gmeetNameSchemeUUID = "uuid"
-const gmeetNameSchemeMattermost = "mattermost"
+const (
+	gmeetNameSchemeAsk        = "ask"
+	gmeetNameSchemeWords      = "words"
+	gmeetNameSchemeUUID       = "uuid"
+	gmeetNameSchemeMattermost = "mattermost"
+)
 
 const configChangeEvent = "custom_gmeet_config_update"
 
 const gmeetURL = "https://g.co/meet"
 
+// UserConfig represents the configuration for a user.
 type UserConfig struct {
 	NamingScheme string `json:"naming_scheme"`
 }
 
+// Plugin is the main struct for the plugin.
 type Plugin struct {
 	plugin.MattermostPlugin
 
@@ -46,6 +50,7 @@ type Plugin struct {
 	botID string
 }
 
+// OnActivate is called when the plugin is activated.
 func (p *Plugin) OnActivate() error {
 	config := p.getConfiguration()
 	if err := config.IsValid(); err != nil {
@@ -58,12 +63,12 @@ func (p *Plugin) OnActivate() error {
 	}
 
 	if err = p.API.RegisterCommand(command); err != nil {
-		return err
+		return errors.Wrap(err, "failed to register slash command")
 	}
 
 	i18nBundle, err := mmi18n.InitBundle(p.API, filepath.Join("assets", "i18n"))
 	if err != nil {
-		return err
+		return errors.Wrap(err, "failed to initialize i18n bundle")
 	}
 	p.b = i18nBundle
 
@@ -85,6 +90,40 @@ func (p *Plugin) OnActivate() error {
 	p.botID = botID
 
 	return nil
+}
+
+func (p *Plugin) startMeetingMattermostName(user *model.User, channel *model.Channel) (string, string, bool, error) {
+	l := p.b.GetServerLocalizer()
+	var (
+		meetingPersonal bool
+		meetingID       string
+		meetingTopic    string
+	)
+	if channel.Type == model.ChannelTypeDirect || channel.Type == model.ChannelTypeGroup {
+		meetingID = generatePersonalMeetingName(user.Username)
+		meetingTopic = p.b.LocalizeWithConfig(l, &i18n.LocalizeConfig{
+			DefaultMessage: &i18n.Message{
+				ID:    "gmeet.start_meeting.personal_meeting_topic",
+				Other: "{{.Name}}'s Personal Meeting",
+			},
+			TemplateData: map[string]string{"Name": user.GetDisplayName(model.ShowNicknameFullName)},
+		})
+		meetingPersonal = true
+	} else {
+		team, teamErr := p.API.GetTeam(channel.TeamId)
+		if teamErr != nil {
+			return "", "", false, teamErr
+		}
+		meetingTopic = p.b.LocalizeWithConfig(l, &i18n.LocalizeConfig{
+			DefaultMessage: &i18n.Message{
+				ID:    "gmeet.start_meeting.channel_meeting_topic",
+				Other: "{{.ChannelName}} Channel Meeting",
+			},
+			TemplateData: map[string]string{"ChannelName": channel.DisplayName},
+		})
+		meetingID = generateTeamChannelName(team.Name, channel.Name)
+	}
+	return meetingTopic, meetingID, meetingPersonal, nil
 }
 
 func (p *Plugin) startMeeting(user *model.User, channel *model.Channel, meetingID string, meetingTopic string, _ bool, rootID string) (string, error) {
@@ -114,29 +153,9 @@ func (p *Plugin) startMeeting(user *model.User, channel *model.Channel, meetingI
 		case gmeetNameSchemeUUID:
 			meetingID = generateUUIDName()
 		case gmeetNameSchemeMattermost:
-			if channel.Type == model.ChannelTypeDirect || channel.Type == model.ChannelTypeGroup {
-				meetingID = generatePersonalMeetingName(user.Username)
-				meetingTopic = p.b.LocalizeWithConfig(l, &i18n.LocalizeConfig{
-					DefaultMessage: &i18n.Message{
-						ID:    "gmeet.start_meeting.personal_meeting_topic",
-						Other: "{{.Name}}'s Personal Meeting",
-					},
-					TemplateData: map[string]string{"Name": user.GetDisplayName(model.ShowNicknameFullName)},
-				})
-				meetingPersonal = true
-			} else {
-				team, teamErr := p.API.GetTeam(channel.TeamId)
-				if teamErr != nil {
-					return "", teamErr
-				}
-				meetingTopic = p.b.LocalizeWithConfig(l, &i18n.LocalizeConfig{
-					DefaultMessage: &i18n.Message{
-						ID:    "gmeet.start_meeting.channel_meeting_topic",
-						Other: "{{.ChannelName}} Channel Meeting",
-					},
-					TemplateData: map[string]string{"ChannelName": channel.DisplayName},
-				})
-				meetingID = generateTeamChannelName(team.Name, channel.Name)
+			meetingTopic, meetingID, meetingPersonal, err = p.startMeetingMattermostName(user, channel)
+			if err != nil {
+				return "", err
 			}
 		default:
 			meetingID = generateRandomName()
@@ -227,7 +246,7 @@ func encodeGmeetMeetingID(meeting string) string {
 	return reg.ReplaceAllString(meeting, "")
 }
 
-func (p *Plugin) askMeetingType(user *model.User, channel *model.Channel, rootID string) error {
+func (p *Plugin) askMeetingType(user *model.User, channel *model.Channel, rootID string) {
 	l := p.b.GetUserLocalizer(user.Id)
 	apiURL := *p.API.GetConfig().ServiceSettings.SiteURL + "/plugins/com.adfinis.gmeet/api/v1/meetings"
 
@@ -334,8 +353,6 @@ func (p *Plugin) askMeetingType(user *model.User, channel *model.Channel, rootID
 		"attachments": []*model.SlackAttachment{&sa},
 	})
 	_ = p.API.SendEphemeralPost(user.Id, post)
-
-	return nil
 }
 
 func (p *Plugin) deleteEphemeralPost(userID, postID string) {
@@ -357,7 +374,7 @@ func (p *Plugin) getUserConfig(userID string) (*UserConfig, error) {
 	var userConfig UserConfig
 	err := json.Unmarshal(data, &userConfig)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "failed to unmarshal user config")
 	}
 
 	return &userConfig, nil
@@ -366,7 +383,7 @@ func (p *Plugin) getUserConfig(userID string) (*UserConfig, error) {
 func (p *Plugin) setUserConfig(userID string, config *UserConfig) error {
 	b, err := json.Marshal(config)
 	if err != nil {
-		return err
+		return errors.Wrap(err, "failed to marshal user config")
 	}
 
 	appErr := p.API.KVSet("config_"+userID, b)

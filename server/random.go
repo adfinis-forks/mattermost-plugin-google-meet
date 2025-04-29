@@ -9,10 +9,11 @@ import (
 	"github.com/mattermost/mattermost/server/public/shared/mlog"
 )
 
+// LETTERS is a list of lowercase letters used for generating random strings.
 var LETTERS = []rune("abcdefghijklmnopqrstuvwxyz")
 
-func randomInt(max int) int {
-	value, err := rand.Int(rand.Reader, big.NewInt(int64(max)))
+func randomInt(maxInt int) int {
+	value, err := rand.Int(rand.Reader, big.NewInt(int64(maxInt)))
 	if err != nil {
 		mlog.Error("Error generating random number", mlog.Err(err))
 		panic(err.Error())
@@ -27,6 +28,7 @@ func randomString(runes []rune, n int) string {
 	}
 	return string(b)
 }
+
 func generateUUIDName() string {
 	id := uuid.New()
 	return (id.String())

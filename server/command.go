@@ -14,11 +14,10 @@ import (
 
 const gmeetCommand = "gmeet"
 
-const gmeetSettingsSeeCommand = "see"
-const gmeetStartCommand = "start"
-
-const valueTrue = "true"
-const valueFalse = "false"
+const (
+	gmeetSettingsSeeCommand = "see"
+	gmeetStartCommand       = "start"
+)
 
 const commandArgNamingScheme = "naming_scheme"
 
@@ -84,6 +83,7 @@ func getAutocompleteData() *model.AutocompleteData {
 	return gmeet
 }
 
+// ExecuteCommand handles the slash command execution.
 func (p *Plugin) ExecuteCommand(c *plugin.Context, args *model.CommandArgs) (*model.CommandResponse, *model.AppError) {
 	split := strings.Fields(args.Command)
 	command := split[0]
@@ -134,9 +134,7 @@ func (p *Plugin) executeStartMeetingCommand(_ *plugin.Context, args *model.Comma
 	}
 
 	if userConfig.NamingScheme == gmeetNameSchemeAsk && input == "" {
-		if err := p.askMeetingType(user, channel, args.RootId); err != nil {
-			return startMeetingError(args.ChannelId, fmt.Sprintf("askMeetingType() threw error: %s", appErr))
-		}
+		p.askMeetingType(user, channel, args.RootId)
 	} else {
 		if _, err := p.startMeeting(user, channel, "", input, false, args.RootId); err != nil {
 			return startMeetingError(args.ChannelId, fmt.Sprintf("startMeeting() threw error: %s", appErr))
