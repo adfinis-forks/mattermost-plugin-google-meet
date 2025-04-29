@@ -1,5 +1,5 @@
 {
-    "mattermost_meet_plugin.header.label": "Start Google Meet call",
+    "mattermost_meet_plugin.header.label": "Start Google Meeting",
     "mattermost_meet_plugin.message.pretext": "I have started a meeting",
     "mattermost_meet_plugin.message.title": "Google Meet",
     "mattermost_meet_plugin.message.subtitle": "Call name",

@@ -1,6 +1,3 @@
-// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
-// See LICENSE.txt for license information.
-
 import de from 'i18n/de_DE.json';
 import en from 'i18n/en.json';
 import fr from 'i18n/fr_FR.json';

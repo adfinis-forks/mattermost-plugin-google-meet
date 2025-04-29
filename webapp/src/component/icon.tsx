@@ -1,11 +1,6 @@
-// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
-// See LICENSE.txt for license information.
-
-//export const IconMeet = () => <i className='icon fa fa-video-camera'/>;
-
 import * as React from 'react';
 
-import Svgs from '@/constants/svgs';
+import Svgs from '../constants/svgs';
 
 export default class Icon extends React.PureComponent {
     render() {
