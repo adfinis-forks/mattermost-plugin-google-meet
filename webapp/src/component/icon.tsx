@@ -20,7 +20,7 @@ function getStyle(): { [key: string]: React.CSSProperties } {
     return {
         iconStyle: {
             position: 'relative',
-            top: '-1px',
+            top: '1px',
         },
     };
 }
