@@ -10,7 +10,7 @@ import {GOOGLE_MEET_MESSAGE} from './constant';
 import {getTranslations} from './translation';
 
 import Client from '../client';
-import {HeaderMessage} from '../component/header';
+import HeaderMessage from '../component/header';
 import {I18nProvider} from '../component/i18n_provider';
 import Icon from '../component/icon';
 import {PostTypeGoogleMeet} from '../component/post_type_google_meet';
