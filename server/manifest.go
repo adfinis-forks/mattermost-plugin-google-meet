@@ -18,7 +18,7 @@ const manifestStr = `
   "description": "Start Google Meeting",
   "homepage_url": "https://github.com/adfinis/mattermost-plugin-google-meet",
   "support_url": "https://github.com/adfinis/mattermost-plugin-google-meet/issues",
-  "release_notes_url": "https://github.com/adfinis/mattermost-plugin-google-meetreleases/tag/v0.2.0",
+  "release_notes_url": "https://github.com/adfinis/mattermost-plugin-google-meetreleases/tag/v0.3.0",
   "icon_path": "assets/starter-template-icon.svg",
   "version": "0.3.0",
   "min_server_version": "6.2.1",
