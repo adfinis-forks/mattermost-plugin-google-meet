@@ -1,4 +1,5 @@
 # Mattermost Plugin Google Meet
+[![ci](https://github.com/adfinis/mattermost-plugin-google-meet/actions/workflows/ci.yml/badge.svg)](https://github.com/adfinis/mattermost-plugin-google-meet/actions/workflows/ci.yml)
 
 > Note: This plugin doesn't work for @gmail.com accounts because they don't have permission to create meetings by the `https://g.co/meet/` url.
 
