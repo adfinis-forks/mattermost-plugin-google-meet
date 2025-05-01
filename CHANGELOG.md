@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.3.0 - Slash Commands and more
+
+Fixes
+
+* Adapt to latest build system
+* Make sure plugin is compatible with Mattermost v10.
+
+Features
+
+* Add slash commands
+
+
 ## v0.2.1 - Add languages and meeting room fixes
 
 Fixes

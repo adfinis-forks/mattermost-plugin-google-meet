@@ -14,8 +14,9 @@ The meeting room link is either a random string, uuid or based on the team and t
 
 ### Installation
 
-Download the latest version:
-https://github.com/SrMouraSilva/mattermost-plugin-google-meet/releases/
+1. Download the latest release from https://github.com/adfinis/mattermost-plugin-google-meet/releases/
+2. In Mattermost, go to **System Console > Plugins > Plugin Management**.
+3. Select **Choose File** to upload the plugin file.
 
 ### Commands
 
@@ -51,13 +52,17 @@ Bliblablub
 
 ## About this fork
 
-Why fork, what new?
+This fork builds on top of [@SrMouraSilva work](https://github.com/SrMouraSilva/mattermost-google-meet-plugin) and implemented the following changes:
+
+* `com.adfinis.gmeet` is the new plugin ID (if you installed an old version of this plugin, please remove it before installing our fork).
+* You can now use slash commands to interact with the plugin.
+* The plugin build system has been updated and adapted to the latest [starter-template](https://github.com/mattermost/mattermost-plugin-starter-template).
 
 
 
 ## Acknowledgment
 
-* [SrMouraSilva](https://github.com/SrMouraSilva) for writing this plugin initially.
+* [@SrMouraSilva](https://github.com/SrMouraSilva) for writing this plugin initially.
 * [gmccullough](https://stackoverflow.com/users/2281071/gmccullough) for the ["g.co/meet/" trick](https://stackoverflow.com/a/62313196/1524997);
 * [@lauraseidler](https://github.com/lauraseidler) and [@hmhealey](https://github.com/hmhealey) for the help with breaking changes in the version 5.35+;
 * [@lauraseidler](https://github.com/lauraseidler) and [@hmhealey](https://github.com/hmhealey) for the help with breaking changes in the version 5.35+;
