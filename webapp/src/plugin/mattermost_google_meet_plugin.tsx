@@ -14,6 +14,7 @@ import HeaderMessage from '../component/header';
 import {I18nProvider} from '../component/i18n_provider';
 import Icon from '../component/icon';
 import {PostTypeGoogleMeet} from '../component/post_type_google_meet';
+import manifest from '../manifest';
 import reducer from '../reducers';
 import type {PluginRegistry, Plugin} from '../types/mattermost-webapp';
 
@@ -27,6 +28,14 @@ export class MattermostGoogleMeetPlugin implements Plugin {
         registry.registerTranslations((locale) => getTranslations(locale));
         registry.registerChannelHeaderButtonAction(
             <Icon/>,
+            (channel) => {
+                store.dispatch(startMeeting(channel.id) as any);
+            },
+            <I18nProvider currentLocale={locale}><HeaderMessage/></I18nProvider>,
+        );
+
+        registry.registerAppBarComponent(
+            getPluginURL(store.getState()) + '/public/app-bar-icon.png',
             (channel) => {
                 store.dispatch(startMeeting(channel.id) as any);
             },
@@ -60,4 +69,9 @@ function getServerRoute(state: GlobalState) {
         }
     }
     return basePath;
+}
+
+function getPluginURL(state: GlobalState) {
+    const siteURL = getServerRoute(state);
+    return siteURL + '/plugins/' + manifest.id;
 }
