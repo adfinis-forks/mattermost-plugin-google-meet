@@ -185,7 +185,7 @@ func (p *Plugin) startMeeting(user *model.User, channel *model.Channel, meetingI
 		slackMeetingTopic = defaultMeetingTopic
 	}
 
-	slackAttachment := model.SlackAttachment{
+	slackAttachment := model.MessageAttachment{
 		Fallback: p.b.LocalizeWithConfig(l, &i18n.LocalizeConfig{
 			DefaultMessage: &i18n.Message{
 				ID: "gmeet.start_meeting.fallback_text",
@@ -223,7 +223,7 @@ func (p *Plugin) startMeeting(user *model.User, channel *model.Channel, meetingI
 		ChannelId: channel.Id,
 		Type:      "custom_gmeet_post_type",
 		Props: map[string]interface{}{
-			"attachments":           []*model.SlackAttachment{&slackAttachment},
+			"attachments":           []*model.MessageAttachment{&slackAttachment},
 			"meeting_id":            meetingID,
 			"meeting_link":          meetingLink,
 			"meeting_personal":      meetingPersonal,
@@ -328,7 +328,7 @@ func (p *Plugin) askMeetingType(user *model.User, channel *model.Channel, rootID
 		},
 	})
 
-	sa := model.SlackAttachment{
+	sa := model.MessageAttachment{
 		Title: p.b.LocalizeWithConfig(l, &i18n.LocalizeConfig{
 			DefaultMessage: &i18n.Message{
 				ID:    "gmeet.ask.title",
@@ -350,7 +350,7 @@ func (p *Plugin) askMeetingType(user *model.User, channel *model.Channel, rootID
 		RootId:    rootID,
 	}
 	post.SetProps(map[string]interface{}{
-		"attachments": []*model.SlackAttachment{&sa},
+		"attachments": []*model.MessageAttachment{&sa},
 	})
 	_ = p.API.SendEphemeralPost(user.Id, post)
 }
