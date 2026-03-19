@@ -1,9 +1,10 @@
 import React from 'react';
-import type {Store, Action} from 'redux';
+import type {Store} from 'redux';
+
+import type {GlobalState} from '@mattermost/types/store';
 
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
 import {getCurrentUserLocale} from 'mattermost-redux/selectors/entities/i18n';
-import type {GlobalState} from 'mattermost-redux/types/store';
 
 import {loadConfig, startMeeting} from './actions';
 import {GOOGLE_MEET_MESSAGE} from './constant';
@@ -19,7 +20,7 @@ import reducer from '../reducers';
 import type {PluginRegistry, Plugin} from '../types/mattermost-webapp';
 
 export class MattermostGoogleMeetPlugin implements Plugin {
-    public async initialize(registry: PluginRegistry, store: Store<GlobalState, Action<Record<string, unknown>>>) {
+    public async initialize(registry: PluginRegistry, store: Store<GlobalState>) {
         // @see https://developers.mattermost.com/extend/plugins/webapp/reference/
 
         registry.registerReducer(reducer);

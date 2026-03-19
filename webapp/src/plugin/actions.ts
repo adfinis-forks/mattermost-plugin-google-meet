@@ -1,12 +1,26 @@
+import type {Post} from '@mattermost/types/posts';
+
 import {PostTypes} from 'mattermost-redux/action_types';
-import type {DispatchFunc, GetStateFunc, ActionFunc, ActionResult} from 'mattermost-redux/types/actions';
-import type {Post} from 'mattermost-redux/types/posts';
+import type {
+    DispatchFunc,
+    GetStateFunc,
+    ActionFuncAsync,
+    ActionResult,
+} from 'mattermost-redux/types/actions';
 
 import ActionTypes from '../action_types';
 import Client from '../client';
 
-export function startMeeting(channelId: string, personal: boolean = false, topic: string = '', meetingId: string = ''): ActionFunc {
-    return async (dispatch: DispatchFunc, getState: GetStateFunc): Promise<ActionResult> => {
+export function startMeeting(
+    channelId: string,
+    personal: boolean = false,
+    topic: string = '',
+    meetingId: string = '',
+): ActionFuncAsync {
+    return async (
+        dispatch: DispatchFunc,
+        getState: GetStateFunc,
+    ): Promise<ActionResult> => {
         try {
             await Client.startMeeting(channelId, personal, topic, meetingId);
         } catch (error) {
@@ -20,7 +34,6 @@ export function startMeeting(channelId: string, personal: boolean = false, topic
                 user_id: getState().entities.users.currentUserId,
                 channel_id: channelId,
                 root_id: '',
-                parent_id: '',
                 original_id: '',
                 reply_count: 0,
                 message: 'We could not start a meeting at this time.',
@@ -35,7 +48,7 @@ export function startMeeting(channelId: string, personal: boolean = false, topic
                 },
                 hashtags: '',
                 pending_post_id: '',
-            };
+            } as Post;
 
             dispatch({
                 type: PostTypes.RECEIVED_POSTS,
@@ -55,7 +68,7 @@ export function startMeeting(channelId: string, personal: boolean = false, topic
     };
 }
 
-export function loadConfig(): ActionFunc {
+export function loadConfig(): ActionFuncAsync {
     return async (dispatch: DispatchFunc): Promise<ActionResult> => {
         try {
             const data = await Client.loadConfig();

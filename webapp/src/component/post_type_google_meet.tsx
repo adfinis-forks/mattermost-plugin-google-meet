@@ -3,8 +3,9 @@ import type {FC} from 'react';
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import type {Post} from 'mattermost-redux/types/posts';
-import type {Theme} from 'mattermost-redux/types/preferences';
+import type {Post} from '@mattermost/types/posts';
+
+import type {Theme} from 'mattermost-redux/selectors/entities/preferences';
 import {makeStyleFromTheme} from 'mattermost-redux/utils/theme_utils';
 
 import Icon from './icon';
@@ -12,7 +13,7 @@ import Icon from './icon';
 export type PostTypeGoogleMeetProps = {
     theme: Theme;
     post: Post;
-}
+};
 
 /**
  * Based on https://github.com/mattermost/mattermost-plugin-zoom
@@ -27,30 +28,31 @@ export class PostTypeGoogleMeet extends React.PureComponent<PostTypeGoogleMeetPr
         const props = post.props;
 
         return (
-            <div className='attachment attachment--pretext'>
-                <div className='attachment__thumb-pretext'>
-                    <FormattedMessage id='mattermost_meet_plugin.message.pretext'/>
+            <div className="attachment attachment--pretext">
+                <div className="attachment__thumb-pretext">
+                    <FormattedMessage id="mattermost_meet_plugin.message.pretext" />
                 </div>
-                <div className='attachment__content'>
-                    <div className='clearfix attachment__container'>
-                        <h5
-                            className='mt-1'
-                            style={style.title}
-                        >
-                            <FormattedMessage id='mattermost_meet_plugin.message.title'/>
+                <div className="attachment__content">
+                    <div className="clearfix attachment__container">
+                        <h5 className="mt-1" style={style.title}>
+                            <FormattedMessage id="mattermost_meet_plugin.message.title" />
                         </h5>
-                        <FormattedMessage id='mattermost_meet_plugin.message.subtitle'/>{': '}
+                        <FormattedMessage id="mattermost_meet_plugin.message.subtitle" />
+                        {': '}
                         <a
-                            href={props.meeting_link}
-                            target='_blank'
-                            rel='noopener noreferrer'
+                            href={props.meeting_link as string}
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
-                            {props.meeting_topic || props.default_meeting_topic}
+                            {
+                                (props.meeting_topic ||
+                                    props.default_meeting_topic) as string
+                            }
                         </a>
                         <div>
                             <div style={style.body}>
                                 <Link
-                                    link={props.meeting_link}
+                                    link={props.meeting_link as string}
                                     theme={this.props.theme}
                                 />
                             </div>
@@ -72,14 +74,14 @@ const Link: FC<LinkProps> = ({link, theme}) => {
 
     return (
         <a
-            className='btn btn-lg btn-primary'
+            className="btn btn-lg btn-primary"
             style={style.button}
-            rel='noopener noreferrer'
-            target='_blank'
+            rel="noopener noreferrer"
+            target="_blank"
             href={link}
         >
-            <Icon/>
-            <FormattedMessage id='mattermost_meet_plugin.message.button'/>
+            <Icon />
+            <FormattedMessage id="mattermost_meet_plugin.message.button" />
         </a>
     );
 };

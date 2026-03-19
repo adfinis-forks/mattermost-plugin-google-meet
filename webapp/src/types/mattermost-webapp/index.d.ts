@@ -7,7 +7,10 @@ declare global {
 }
 
 interface Plugin {
-    initialize(registry: PluginRegistry, store: Store<GlobalState, Action<Record<string, unknown>>>);
+    initialize(
+        registry: PluginRegistry,
+        store: Store<GlobalState, Action<Record<string, unknown>>>,
+    );
     uninitialize();
 }
 
@@ -16,10 +19,27 @@ export interface PluginRegistry {
 
     // Add more if needed from https://developers.mattermost.com/extend/plugins/webapp/reference
     registerPostTypeComponent(typeName: string, component: React.ElementType);
-    registerChannelHeaderButtonAction(icon: React.ReactNode, callback: (channel: Channel) => void, dropdownText: React.ReactNode|string, tooltipText?: React.ReactNode|string);
+    registerChannelHeaderButtonAction(
+        icon: React.ReactNode,
+        callback: (channel: Channel) => void,
+        dropdownText: React.ReactNode | string,
+        tooltipText?: React.ReactNode | string,
+    );
 
-    registerAppBarComponent(iconUrl: string, action: (channel: Channel) => void, tooltipText: React.ReactNode, supportedProductIds?: any, rhsComponent?: any, rhsTitle?: string);
+    registerAppBarComponent(
+        iconUrl: string,
+        action: (channel: Channel) => void,
+        tooltipText: React.ReactNode,
+        supportedProductIds?: any,
+        rhsComponent?: any,
+        rhsTitle?: string,
+    );
 
-    registerReducer(reducer: (state: GlobalState, action: Action<Record<string, unknown>>) => GlobalState);
+    registerReducer(
+        reducer: (
+            state: GlobalState,
+            action: Action<Record<string, unknown>>,
+        ) => GlobalState,
+    );
     registerWebSocketEventHandler(event: string, handler: (event: any) => void);
 }
