@@ -59,8 +59,8 @@ git add plugin.json server/manifest.go webapp/src/manifest.ts
 git commit -m "chore: new v$NEW_VERSION release"
 git tag "v$NEW_VERSION"
 git push --tags
+gh release create "v$NEW_VERSION" dist/*.tar.gz --generate-notes --repo adfinis-forks/mattermost-plugin-google-meet
 ```
-
 
 #### Translation
 
