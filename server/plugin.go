@@ -248,7 +248,12 @@ func encodeGmeetMeetingID(meeting string) string {
 
 func (p *Plugin) askMeetingType(user *model.User, channel *model.Channel, rootID string) {
 	l := p.b.GetUserLocalizer(user.Id)
-	apiURL := *p.API.GetConfig().ServiceSettings.SiteURL + "/plugins/com.adfinis.gmeet/api/v1/meetings"
+	siteURL := p.API.GetConfig().ServiceSettings.SiteURL
+	if siteURL == nil || *siteURL == "" {
+		p.API.LogError("SiteURL is not configured")
+		return
+	}
+	apiURL := *siteURL + "/plugins/com.adfinis.gmeet/api/v1/meetings"
 
 	actions := []*model.PostAction{}
 
