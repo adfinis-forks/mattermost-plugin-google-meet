@@ -5,3 +5,5 @@ services:
     restart: never
     ports:
       - 8065:8065
+    environment:
+      MM_SERVICESETTINGS_SITEURL: http://127.0.0.1:8065
