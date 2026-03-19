@@ -7,9 +7,9 @@ const manifest = JSON.parse(`
     "description": "Start Google Meeting",
     "homepage_url": "https://github.com/adfinis/mattermost-plugin-google-meet",
     "support_url": "https://github.com/adfinis/mattermost-plugin-google-meet/issues",
-    "release_notes_url": "https://github.com/adfinis/mattermost-plugin-google-meet/releases/tag/v0.3.1",
+    "release_notes_url": "https://github.com/adfinis/mattermost-plugin-google-meet/releases/tag/v0.3.2",
     "icon_path": "assets/starter-template-icon.svg",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "min_server_version": "6.2.1",
     "server": {
         "executables": {

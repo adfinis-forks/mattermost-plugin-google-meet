@@ -46,6 +46,22 @@ Run to install:
 sh make.sh
 ```
 
+#### Create a new release
+
+There is no CI to create a new release. To publish a new release:
+
+```bash
+NEW_VERSION=X.X.X
+
+sed -i 's/"version": "[0-9]\+\.[0-9]\+\.[0-9]\+"/"version": "'"$NEW_VERSION"'"/' plugin.json
+make
+git add plugin.json server/manifest.go webapp/src/manifest.ts
+git commit -m "chore: new v$NEW_VERSION release"
+git tag "v$NEW_VERSION"
+git push --tags
+```
+
+
 #### Translation
 
 Bliblablub
