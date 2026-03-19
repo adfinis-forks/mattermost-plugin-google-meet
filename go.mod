@@ -1,6 +1,6 @@
 module github.com/adfinis/mattermost-plugin-google-meet
 
-go 1.24.13
+go 1.25.0
 
 require (
 	github.com/charmbracelet/hotdiva2000 v0.0.0-20250428120649-83c28ea5905c
