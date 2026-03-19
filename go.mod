@@ -1,12 +1,12 @@
 module github.com/adfinis/mattermost-plugin-google-meet
 
-go 1.23.0
+go 1.24.0
 
 require (
 	github.com/charmbracelet/hotdiva2000 v0.0.0-20250428120649-83c28ea5905c
 	github.com/google/uuid v1.6.0
 	github.com/mattermost/mattermost/server/public v0.1.11
-	github.com/nicksnyder/go-i18n/v2 v2.5.0
+	github.com/nicksnyder/go-i18n/v2 v2.6.1
 	github.com/pkg/errors v0.9.1
 )
 
@@ -47,10 +47,10 @@ require (
 	github.com/wiggin77/merror v1.0.5 // indirect
 	github.com/wiggin77/srslog v1.0.1 // indirect
 	golang.org/x/crypto v0.32.0 // indirect
-	golang.org/x/mod v0.22.0 // indirect
+	golang.org/x/mod v0.30.0 // indirect
 	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/sys v0.29.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/text v0.32.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250124145028-65684f501c47 // indirect
 	google.golang.org/grpc v1.70.0 // indirect
 	google.golang.org/protobuf v1.36.4 // indirect
