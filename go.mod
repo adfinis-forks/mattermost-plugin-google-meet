@@ -5,7 +5,7 @@ go 1.26.3
 require (
 	github.com/charmbracelet/hotdiva2000 v0.0.0-20250428120649-83c28ea5905c
 	github.com/google/uuid v1.6.0
-	github.com/mattermost/mattermost/server/public v0.4.2
+	github.com/mattermost/mattermost/server/public v0.4.3
 	github.com/nicksnyder/go-i18n/v2 v2.6.1
 	github.com/pkg/errors v0.9.1
 )
