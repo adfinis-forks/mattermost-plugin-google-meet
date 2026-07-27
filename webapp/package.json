@@ -60,7 +60,7 @@
         "core-js": "3.26.0",
         "mattermost-redux": "11.1.0",
         "react": "18.2.0",
-        "react-intl": "7.1.14",
+        "react-intl": "10.1.4",
         "react-redux": "9.2.0",
         "redux": "5.0.1",
         "typescript": "5.6.3"
